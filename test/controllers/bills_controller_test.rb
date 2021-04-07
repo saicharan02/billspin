@@ -1,28 +1,48 @@
 require "test_helper"
 
 class BillsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @bill = bills(:one)
+  end
+
   test "should get index" do
-    get bills_index_url
+    get bills_url
     assert_response :success
   end
 
   test "should get new" do
-    get bills_new_url
+    get new_bill_url
     assert_response :success
   end
 
-  test "should get create" do
-    get bills_create_url
+  test "should create bill" do
+    assert_difference('Bill.count') do
+      post bills_url, params: { bill: { amount: @bill.amount, description: @bill.description, name: @bill.name } }
+    end
+
+    assert_redirected_to bill_url(Bill.last)
+  end
+
+  test "should show bill" do
+    get bill_url(@bill)
     assert_response :success
   end
 
-  test "should get update" do
-    get bills_update_url
+  test "should get edit" do
+    get edit_bill_url(@bill)
     assert_response :success
   end
 
-  test "should get destroy" do
-    get bills_destroy_url
-    assert_response :success
+  test "should update bill" do
+    patch bill_url(@bill), params: { bill: { amount: @bill.amount, description: @bill.description, name: @bill.name } }
+    assert_redirected_to bill_url(@bill)
+  end
+
+  test "should destroy bill" do
+    assert_difference('Bill.count', -1) do
+      delete bill_url(@bill)
+    end
+
+    assert_redirected_to bills_url
   end
 end
