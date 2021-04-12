@@ -11,16 +11,17 @@ class Bill < ApplicationRecord
   def self.calculate(bill_id, bill_total, guests_params)
     guests_array = []
 
-    guests_params.each do |guest|
-      if guest.has_key?("money_to_pay")
-	      new_guest = Player.new(guest[:name], guest[:money_paid].to_f, guest[:money_to_pay].to_f)
-	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :money_paid => guest[:money_paid].to_f, :money_to_pay => guest[:money_to_pay].to_f)
-      else
-  	    money_to_pay = bill_total / guests_params.length.to_f
-        new_guest = Player.new(guest[:name], guest[:money_paid].to_f, money_to_pay)
-	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :money_paid => guest[:money_paid].to_f, :money_to_pay => money_to_pay)
-	    end
-      guests_array.push(new_guest)
+    if guests_params.present?
+      guests_params.each do |guest|
+        if guest.has_key?("money_to_pay")
+  	      new_guest = Player.new(guest[:name], guest[:money_paid].to_f, guest[:money_to_pay].to_f)
+  	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :money_paid => guest[:money_paid].to_f, :money_to_pay => guest[:money_to_pay].to_f)
+        else
+    	    money_to_pay = bill_total / guests_params.length.to_f
+          new_guest = Player.new(guest[:name], guest[:money_paid].to_f, money_to_pay)
+  	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :money_paid => guest[:money_paid].to_f, :money_to_pay => money_to_pay)
+  	    end
+        guests_array.push(new_guest)
     end
 
     guests_who_overpaid = []
@@ -79,4 +80,5 @@ class Player
   def amount_owes
     @money_to_pay - @money_paid
   end
+end
 end

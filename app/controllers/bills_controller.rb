@@ -12,7 +12,7 @@ class BillsController < ApplicationController
   def show
 		@bill = Bill.find(params[:id])
 		@guests = @bill.guests
-		@debts = @bill.debts
+		# @debts = @bill.debts
 
 		if current_user == @bill.user
 			render :show
