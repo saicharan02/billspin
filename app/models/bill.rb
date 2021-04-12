@@ -5,6 +5,8 @@ class Bill < ApplicationRecord
 
   belongs_to :user
 
+  has_many :guests, dependent: :destroy
+
 
   def self.calculate(bill_id, bill_total, guests_params)
     guests_array = []

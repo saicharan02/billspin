@@ -4,10 +4,10 @@ module SessionHelper
 	end
 
 	def login_user(user)
-		# token = SecureRandom.base64(16)
-		# user.session_token = token
-		# session[:session_token] = token
-		# user.save
+		token = SecureRandom.base64(16)
+		user.session_token = token
+		session[:session_token] = token
+		user.save
 	end
 
 	def logout_user

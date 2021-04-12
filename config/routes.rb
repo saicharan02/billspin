@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
+  root :to => 'bills#new'
 
-  
-  get 'session/new'
-  get 'session/create'
-  get 'session/update'
-  get 'session/edit'
-  get 'session/show'
-  get 'users/new'
-  get 'users/create'
-  get 'users/update'
-  get 'users/edit'
-  get 'users/show'
+
+  resources :session, :only => [:create, :destroy, :new]
+  get "logout" => "session#destroy", :as => "logout"
+  get "login" => "session#new", :as => "login"
+
+  resources :users, :except => [:destroy, :index]
+  # get '/:id' => 'users#show', :as => :user
+
   resources :bills
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

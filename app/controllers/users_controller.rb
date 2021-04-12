@@ -33,7 +33,6 @@ class UsersController < ApplicationController
 	def show
 		@user = current_user
 		@bills = @user.bills
-		@payments = Debt.where(:creditor_id => @user.id, :is_a_payment => true)
 		render :show
 	end
 end

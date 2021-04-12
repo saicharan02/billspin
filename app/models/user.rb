@@ -3,7 +3,7 @@ class User < ApplicationRecord
   attr_accessor :username, :email, :password
 
   validates :username, :email, :password, presence: :true, unless: :guest?
-  validates :name, uniqueness: :true, allow_blank: :false
+  validates :username, uniqueness: :true, allow_blank: :false
 
   has_many :bills
 

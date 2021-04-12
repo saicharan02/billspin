@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   include ApplicationHelper
-  before_action :set_bill, only: %i[ show edit update destroy ]
+  before_action :require_login, :only => [:index]
 
   # GET /bills or /bills.json
   def index
