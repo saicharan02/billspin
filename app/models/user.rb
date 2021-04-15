@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   has_many :bills
 
+  has_many :debts, :foreign_key => "debtor_id"
+  
+
 
   def self.new_guest
     new { |u| u.guest = true }
