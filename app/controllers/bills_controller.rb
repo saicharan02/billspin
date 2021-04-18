@@ -35,21 +35,23 @@ class BillsController < ApplicationController
 
   # POST /bills or /bills.json
   def create
-    bill_id = Bill.last.nil? ? 1 : Bill.last.id
+    bill_id = Bill.last.nil? ? 1 : Bill.last.id=+1
     @bill = Bill.new(:id => bill_id, :user => current_user, :name => params[:bill][:name], :description => params[:bill][:description], :amount => params[:bill][:amount])
-
+    
     if @bill.valid?
       @bill.save
 
-      params[:bill][:guests][0][:name] = current_user.username unless current_user.guest?
+      print "###Bill Params"
+      print params[:bill]
 
+      params[:bill][:guests][0][:name] = current_user.name unless current_user.guest?
       Bill.calculate(bill_id,params[:bill][:amount].to_i, params[:bill][:guests])
 
       respond_to do |format|
         format.html { redirect_to bill_url(@bill), notice: "Bill was successfully created." }
         format.json { render :json => {:error => "none", :message => "Bill id: #{@bill.id} successfully added."} }
       end
-      else
+    else
         render :new
     end
   end
@@ -76,14 +78,11 @@ class BillsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bill
-      @bill = Bill.find(params[:id])
-    end
+  # private
+  #   # Use callbacks to share common setup or constraints between actions.
+  #   def set_bill
+  #     @bill = Bill.find(params[:id])
+  #   end
 
-    # Only allow a list of trusted parameters through.
-    def bill_params
-      params.require(:bill).permit(:name, :description, :amount)
-    end
+    
 end

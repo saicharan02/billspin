@@ -1,2 +1,14 @@
-<h1>Session#new</h1>
-<p>Find me in app/views/session/new.html.erb</p>
+<h2>Login</h2>
+
+<form id="login-form" action="<%= session_index_url %>" method="post">
+	<input type="text" id="email" name="user[email]" placeholder="Email"/> <span id="login-email-errors" class="form-errors alert alert-danger"></span>
+	<br>
+	<input type="password" id="password" name="user[password]" placeholder="Password" /> <span id="login-password-errors" class="form-errors alert alert-danger"></span>
+	<br>
+	<input type="submit" class="btn btn-success" value="Login" />
+</form>
+
+<br>
+<p>Don't have an account? <%= link_to "Create Account", new_user_url %></p>
+
+<p><%= link_to "Back to Index", root_url %></p>

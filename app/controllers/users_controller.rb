@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	include ApplicationHelper
-	before_filter :require_login, :only => [:edit, :show]
+	before_action :require_login, :only => [:edit, :show]
 
 	def new
 		@user = User.new
@@ -8,9 +8,9 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		params[:user][:username] = params[:user][:username].downcase
-		@user = User.new(params[:user])
-		@user.guest = false
+		params[:user][:name] = params[:user][:name].downcase
+		@user = User.new(user_params)
+	  	@user.guest = false
 
 		if @user.save
 			current_user.move_to(@user)
@@ -34,5 +34,9 @@ class UsersController < ApplicationController
 		@user = current_user
 		@bills = @user.bills
 		render :show
+	end
+
+	def user_params
+		params.require(:user).permit(:name, :email, :password, :salt, :encrypted_password)
 	end
 end

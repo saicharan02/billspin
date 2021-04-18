@@ -10,10 +10,10 @@ module ApplicationHelper
 		end
 	end
 
-  def require_login
-    if current_user && current_user.guest?
-    	flash[:notice] = "Please login to view that page."
-      redirect_to login_url
-    end
-  end
+#   def require_login
+#     if current_user && current_user.guest?
+#     	flash[:notice] = "Please login to view that page."
+#       redirect_to login_url
+#     end
+#   end
 end

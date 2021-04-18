@@ -1,5 +1,23 @@
+
+
+
+<h2>BillsPin:<span class="lead"> An App for Group Expenses</span></h2>
+
+<br>
+<br>
+<h3>Add a Bill </h3>
+
 <h1>New Bill</h1>
 
 <%= render 'form', bill: @bill %>
 
+<div><button class="btn btn-info" id="split-evenly" on>Split Evenly</button></div>
+
+
 <%= link_to 'Back', bills_path %>
+
+
+
+<div id="form-submit-messages"></div>
+<br>
+<br>
