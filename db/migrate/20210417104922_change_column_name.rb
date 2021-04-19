@@ -5,6 +5,8 @@ class ChangeColumnName < ActiveRecord::Migration[6.1]
 
     rename_column(:users, :money_to_get, :money_took)
 
+    
+
 
   end
 end

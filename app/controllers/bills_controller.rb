@@ -48,9 +48,9 @@ class BillsController < ApplicationController
       Bill.calculate(bill_id,params[:bill][:amount].to_i, params[:bill][:guests])
 
       respond_to do |format|
-        format.html { redirect_to bill_url(@bill), notice: "Bill was successfully created." }
-        format.json { render :json => {:error => "none", :message => "Bill id: #{@bill.id} successfully added."} }
-      end
+				format.json { render :json => {:error => "none", :message => "Bill id: #{@bill.id} successfully added."} }
+				format.html { redirect_to bill_url(@bill) }
+			end
     else
         render :new
     end
