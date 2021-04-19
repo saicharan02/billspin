@@ -27,6 +27,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'image_processing', '~> 1.2'
 
 gem "twitter-bootstrap-rails"
+gem 'bootstrap',  '~>4.3.1'
+
 gem "ejs"
 
 # Reduces boot times through caching; required in config/boot.rb

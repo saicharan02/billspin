@@ -1,11 +1,9 @@
 
+<h1 class="d-flex align-items-center justify-content-center">BillsPin:<span class="lead"> An App for Group Expenses</span></h1>
 
+<h3>Add a Bill </h3>
 
-<h2>BillsPin:<span class="lead"> An App for Group Expenses</span></h2>
-
-<h3>Add a Bill <span class="lead"> or <button class="btn btn-danger" data-toggle="modal" data-target="#payAFriend"> Pay A Friend </button></span></h3>
-
-<form id="new-bill-form" action="<%= bills_url %>" method="post">
+<form  id="new-bill-form" action="<%= bills_url %>" method="post">
 	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
 	<input type="text" id="bill-name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name">
