@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	def create
 		params[:user][:name] = params[:user][:name].downcase
 		@user = User.new(user_params)
-	  	@user.guest = false
+		@user.guest = false
 
 		if @user.save
 			current_user.move_to(@user)
@@ -37,6 +37,6 @@ class UsersController < ApplicationController
 	end
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password_digest, :salt, :encrypted_password)
+		params.require(:user).permit(:name, :email, :password_digest, :salt, :password)
 	end
 end

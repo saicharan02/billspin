@@ -1,3 +1,4 @@
+
 $(function() {
 	var numFriends = 1;
 
@@ -15,7 +16,8 @@ $(function() {
 	
 
 	var splitEvenly = function() {
-		$("#guests-on-bill").html(JST['bills/split_evenly']({}));
+		console.log('hello')
+		$("#guests-on-bill").html(JST['/bills/split_evenly']({}));
 
 		$(".add-friend").click(function(e) {
 			e.preventDefault();

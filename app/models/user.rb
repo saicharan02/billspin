@@ -1,9 +1,11 @@
+require 'bcrypt'
 class User < ApplicationRecord
+  has_secure_password
 
-  attr_accessor :username, :email, :password
 
-  validates :username, :email, :password, presence: :true, unless: :guest?
-  validates :username, uniqueness: :true, allow_blank: :false
+
+  validates :name, :email, :password, presence: :true, unless: :guest?
+  validates :name, uniqueness: :true, allow_blank: :false
 
   has_many :bills
 
@@ -32,7 +34,9 @@ class User < ApplicationRecord
 
   def move_to(user)
     bills.update_all(user_id: user.id)
-    credits.update_all(creditor_id: user.id)
+    # credits.update_all(creditor_id: user.id)
   end
+
+
 
 end

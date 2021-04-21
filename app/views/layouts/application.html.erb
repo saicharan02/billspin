@@ -13,7 +13,12 @@
 
   <body>
   <div class="container">
-			<% if current_user && current_user.guest? %>
+	<div class="row">
+
+		
+		<div class="span3">
+      
+			<% if !current_user || current_user.guest? %>
 				<%= link_to "Create Account", new_user_url %> | <%= link_to "Login", login_url %>
 			<% else %>
 				<span class="label label-success"> Logged in as </span> <%= current_user.email %>
@@ -22,18 +27,22 @@
 				<br>
 				<%= link_to "Logout", logout_url %>
 			<% end %>
-  </div>
-  <%= yield %>
-  <script>
-  if (typeof billspin === "undefined") {
-	billspin = {};
-  }
+			<br
+		</div>
+	</div>
+</div>
 
-  <% if current_user.guest? %>
-	billspin.currentUserId = "You";
-  <% else %>
-	billspin.currentUserId = <%= current_user.id %>;
-  <% end %>
+
+
+
+  
+  <%= yield %>
+<script>
+if (typeof Billspin === "undefined") {
+	Billspin = {};
+}
+
+
 </script>
 </body>
 </html>

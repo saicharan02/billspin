@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-  include ApplicationHelper, SessionHelper
+	include ApplicationHelper, SessionHelper
 
 	def new
 		render :new

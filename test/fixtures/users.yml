@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: MyString
+  name: MyString
   email: MyString
   password: MyString
   money_given: 1.5
@@ -9,7 +9,7 @@ one:
   guest: false
 
 two:
-  username: MyString
+  name: MyString
   email: MyString
   password: MyString
   money_given: 1.5
