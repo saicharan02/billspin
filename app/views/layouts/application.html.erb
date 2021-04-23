@@ -12,18 +12,18 @@
   </head>
 
   <body>
+  
   <div class="container">
 	<div class="row">
 
 		
 		<div class="span3">
       
-			<% if !current_user || current_user.guest? %>
+			<% if !current_user   %>
 				<%= link_to "Create Account", new_user_url %> | <%= link_to "Login", login_url %>
 			<% else %>
 				<span class="label label-success"> Logged in as </span> <%= current_user.email %>
 				<br>
-				<%= link_to "Profile", user_url(current_user) %>
 				<br>
 				<%= link_to "Logout", logout_url %>
 			<% end %>
@@ -41,6 +41,8 @@
 if (typeof Billspin === "undefined") {
 	Billspin = {};
 }
+
+
 
 
 </script>

@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   include ApplicationHelper
-  before_action :require_login, :only => [:index]
+  # before_action :require_login, :only => [:index]
 
   # GET /bills or /bills.json
   def index
@@ -12,7 +12,6 @@ class BillsController < ApplicationController
   def show
 		@bill = Bill.find(params[:id])
 		@guests = @bill.guests
-		# @debts = @bill.debts
 
 		if current_user == @bill.user
 			render :show
@@ -26,7 +25,6 @@ class BillsController < ApplicationController
   def new
     @user = current_user
     @bill = Bill.new
-    render :new
   end
 
   # GET /bills/1/edit
@@ -37,7 +35,6 @@ class BillsController < ApplicationController
   def create
     bill_id = Bill.last.nil? ? 1 : Bill.last.id=+1
     @bill = Bill.new(:id => bill_id, :user => current_user, :name => params[:bill][:name], :description => params[:bill][:description], :amount => params[:bill][:amount])
-    
     if @bill.valid?
       @bill.save
 

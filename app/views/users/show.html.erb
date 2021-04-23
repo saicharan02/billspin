@@ -1,2 +1,26 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2>Hi <%= @user.name %>!</h2>
+
+<h3>Dashboard</h3>
+<h3>Bills</h3>
+
+<% if @bills.empty? %>
+  <p>You have no bills.</p>
+<% else %>
+	<% @bills.each do |bill| %>
+		<p>
+			<b><%= bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>:</b> Bill <%= bill.id %>
+		  <%= link_to "#{ bill.name }", bill_url(bill) %> <%= link_to "Edit Bill #{bill.id}", edit_bill_url(bill), :class => "btn btn-warning" %> <button class="btn btn-primary">Mark as Paid</button>
+	  </p>
+	<% end %>
+<% end %>
+
+
+
+<h3>Find Friends</h3>
+<textarea>Input friend email</textarea>
+<button class="btn btn-primary">Send Friend Request</button>
+
+<p><%= link_to "Return to Index Page", root_url %></p>
+<% if logged_in? %>
+	<p><%= button_to "Log out", session_url, :method => "delete", class: "btn btn-danger" %></p>
+<% end %>

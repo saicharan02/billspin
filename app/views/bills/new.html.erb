@@ -25,7 +25,14 @@
 	<button class="btn btn-info" id="split-evenly">Split Evenly</button>
 	<%= javascript_pack_tag 'bills' %>
 	<br>
-
+	<input  name="bill[guests][][name]" ><span class="label label-success"> You </span> paid <input type="number" name="bill[guests][][money_paid]" class="amount-paid" placeholder="Amount">.
+	<br>
+	You are splitting this bill evenly with:
+	<br>
+	<br>
+	<input type="text" class="guest-name" name="bill[guests][][name]" placeholder="Enter Friend Name"> paid <input type="number" name="bill[guests][][money_paid]" class="amount-paid" placeholder="Amount">
+	<br>
+	<button class="btn btn-primary add-friend">Add Another Friend</button> or <input type="submit" class="btn btn-success" id="add-bill" value="Add Bill">
 	<br>
 	<div id="guests-on-bill"></div>
 	<br>

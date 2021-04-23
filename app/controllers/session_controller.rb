@@ -6,10 +6,12 @@ class SessionController < ApplicationController
 	end
 
 	def create
-		@user = User.find_by_email(params[:user][:email])
+		@user = User.find_by(email: params[:user][:email].downcase)
 
 		if @user && @user.verify_password(params[:user][:password])
 			login_user(@user)
+		    # byebug
+			
 			flash[:notice] = "Successfully logged in."
 			redirect_to user_url(@user)
 		else

@@ -17,6 +17,7 @@ $(function() {
 
 	var splitEvenly = function() {
 		console.log('hello')
+		debugger
 		$("#guests-on-bill").html(JST['/bills/split_evenly']({}));
 
 		$(".add-friend").click(function(e) {
